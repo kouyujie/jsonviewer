@@ -56,7 +56,7 @@ function displayUI(theme, html) {
 	toolboxElement.className = "toolbox";
 	expandElement = document.createElement("span");
 	expandElement.title = "expand all";
-	expandElement.innerText = "显示全部";
+	expandElement.innerText = "显示打回结果";
 	reduceElement = document.createElement("span");
 	reduceElement.title = "reduce all";
 	reduceElement.innerText = "只显示打回";
