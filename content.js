@@ -176,22 +176,15 @@ function onexpand() {
     for(i = 1 ;i < a.length ;i++) {
 		if(a[i].length == 0 ) break;
         if (a[i].childNodes[13].innerText.match(/\]/)) {
-            o = o + "<tr><td>"+a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")  + "</td><td>" +
-                a[i].childNodes[7].innerText.replace(/[^0-9]/ig, " ")+ "</td><td>" +
+            o = o + "<tr><td><a target='_blank'"+ " href=http://geo.map.xiaojukeji.com/drawboard/get_info?info_id="+a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")+">"+
+                a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")+ "</a>"+"</td><td>" +
+            //o = o + "<tr><td>"+a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")  + "</td><td>" +
+                a[i].childNodes[7].innerText.replace(/[^0-9]/ig, " ")+ "</td>" + "<td>    </td><td>" +
 				a[i].childNodes[6].innerText.replace(/examine_op:/, " ")  + "</td></tr>";
 
         }
     }
 
-	/*
-	var a = document.getElementsByClassName("obj collapsible");
-	var o = "";
-    for(i = 1 ;i <100 ;i++){
-        if(a[i].childNodes[13].innerText.match(/\]/)) o = o + a[i].childNodes[6].innerText + a[i].childNodes[7].innerText + a[i].childNodes[13].innerText +"<br>";
-	}
-
-    document.write( o );
-    */
 	//todo:Add url
 	o += "</table>"
     document.write( o.replace( /"/g, " ").replace(/,/g,"") );
@@ -199,22 +192,15 @@ function onexpand() {
 }
 
 function onreduce() {
-	var strc = "\r\n\t";
-	var init = 1;
 	Array.prototype.forEach.call(collapsers, function(collapsed) {
 		if (!collapsed.parentNode.classList.contains("collapsed")){
 			str = collapsed.parentNode.innerText;
  //           collapsed.parentNode.classList.add("collapsed");
             if(!str.match(/\]/))collapsed.parentNode.classList.add("collapsed");
-            if(str.match(/\]/) && !init ){
-                strc += str;
-                strc += "===============================================================\r\t\n";
-			}
-            init = 0;
 		}
 
 	});
-	//document.write(strc);
+
 }
 
 function getParentLI(element) {
