@@ -55,10 +55,10 @@ function displayUI(theme, html) {
 	toolboxElement = document.createElement("div");
 	toolboxElement.className = "toolbox";
 	expandElement = document.createElement("span");
-	expandElement.title = "expand all";
+	expandElement.title = "只显示打回结果";
 	expandElement.innerText = "只显示打回结果";
 	reduceElement = document.createElement("span");
-	reduceElement.title = "reduce all";
+	reduceElement.title = "只显示打回原因";
 	reduceElement.innerText = "只显示打回原因";
 	//viewSourceElement = document.createElement("a");
 	//viewSourceElement.innerText = "空";
