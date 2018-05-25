@@ -59,7 +59,7 @@ function displayUI(theme, html) {
 	expandElement.innerText = "显示打回结果";
 	reduceElement = document.createElement("span");
 	reduceElement.title = "reduce all";
-	reduceElement.innerText = "只显示打回";
+	reduceElement.innerText = "只显示打回原因";
 	viewSourceElement = document.createElement("a");
 	viewSourceElement.innerText = "空";
 	viewSourceElement.target = "_blank";
