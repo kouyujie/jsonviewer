@@ -56,21 +56,21 @@ function displayUI(theme, html) {
 	toolboxElement.className = "toolbox";
 	expandElement = document.createElement("span");
 	expandElement.title = "expand all";
-	expandElement.innerText = "显示打回结果";
+	expandElement.innerText = "只显示打回结果";
 	reduceElement = document.createElement("span");
 	reduceElement.title = "reduce all";
 	reduceElement.innerText = "只显示打回原因";
-	viewSourceElement = document.createElement("a");
-	viewSourceElement.innerText = "空";
-	viewSourceElement.target = "_blank";
-	viewSourceElement.href = "view-source:" + location.href;
-	optionsElement = document.createElement("img");
-	optionsElement.title = "options";
-	optionsElement.src = chrome.runtime.getURL("options.png");
+	//viewSourceElement = document.createElement("a");
+	//viewSourceElement.innerText = "空";
+	//viewSourceElement.target = "_blank";
+	//viewSourceElement.href = "view-source:" + location.href;
+	//optionsElement = document.createElement("img");
+	//optionsElement.title = "options";
+	//optionsElement.src = chrome.runtime.getURL("options.png");
 	toolboxElement.appendChild(expandElement);
 	toolboxElement.appendChild(reduceElement);
-	toolboxElement.appendChild(viewSourceElement);
-	toolboxElement.appendChild(optionsElement);
+	//toolboxElement.appendChild(viewSourceElement);
+	//toolboxElement.appendChild(optionsElement);
 	document.body.appendChild(toolboxElement);
 	document.body.addEventListener('click', ontoggle, false);
 	document.body.addEventListener('mouseover', onmouseMove, false);
@@ -164,6 +164,7 @@ function ontoggle(event) {
 function onexpand() {
 
 
+    var oa = "<table>";
     var o = "<table>";
 
 	Array.prototype.forEach.call(collapsers, function(collapsed) {
@@ -176,22 +177,35 @@ function onexpand() {
     for(i = 1 ;i < a.length ;i++) {
 		if(a[i].length == 0 ) break;
         if (a[i].childNodes[13].innerText.match(/\]/)) {
-            o = o + "<tr><td><a target='_blank'"+ " href=http://geo.map.xiaojukeji.com/drawboard/get_info?info_id="+a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")+">"+
+            oa = oa + "<tr><td><a target='_blank'"+ " href=http://geo.map.xiaojukeji.com/drawboard/get_info?info_id="+a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")+">"+
                 a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")+ "</a>"+"</td><td>" +
-            //o = o + "<tr><td>"+a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")  + "</td><td>" +
                 a[i].childNodes[7].innerText.replace(/[^0-9]/ig, " ")+ "</td>" + "<td>    </td><td>" +
+                a[i].childNodes[6].innerText.replace(/examine_op:/, " ")  + "</td></tr>";
+
+            o = o + "<tr><td>"+a[i].childNodes[13].innerText.substr(-11).replace(/[^0-9]/ig, "")+ "</td><td>" +
+                "</td><td></td><td>" +
 				a[i].childNodes[6].innerText.replace(/examine_op:/, " ")  + "</td></tr>";
 
         }
     }
-
 	//todo:Add url
+    oa += "</table>"
 	o += "</table>"
-    document.write( o.replace( /"/g, " ").replace(/,/g,"") );
+	var resulttxta = oa;
+    resulttxta = resulttxta.replace( /"/g, " ").replace(/,/g,"");
+
+    var resulttxt = o;
+    resulttxt = resulttxt.replace( /"/g, " ").replace(/,/g,"").replace(/_map_p/g,"");
+
+    document.write( resulttxta );
+    document.write( "<br><br><br>")
+    document.write( resulttxt )
+    //document.write( o.replace( /"/g, " ").replace(/,/g,"") );
 
 }
 
 function onreduce() {
+	/*
 	Array.prototype.forEach.call(collapsers, function(collapsed) {
 		if (!collapsed.parentNode.classList.contains("collapsed")){
 			str = collapsed.parentNode.innerText;
@@ -200,6 +214,10 @@ function onreduce() {
 		}
 
 	});
+	*/
+    a=document.body.innerText.match("remark")
+    b=document.body.innerText.substr(a.index).search(",")
+    document.write(document.body.innerText.substr(a.index+8,b-8).replace(/"/g, " "));
 
 }
 
