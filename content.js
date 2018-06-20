@@ -163,7 +163,7 @@ function ontoggle(event) {
 
 function onexpand() {
 
-
+//oa means with url
     var oa = "<table>";
     var o = "<table>";
 
@@ -188,7 +188,6 @@ function onexpand() {
 
         }
     }
-	//todo:Add url
     oa += "</table>"
 	o += "</table>"
 	var resulttxta = oa;
@@ -200,7 +199,6 @@ function onexpand() {
     document.write( resulttxta );
     document.write( "<br><br><br>")
     document.write( resulttxt )
-    //document.write( o.replace( /"/g, " ").replace(/,/g,"") );
 
 }
 
